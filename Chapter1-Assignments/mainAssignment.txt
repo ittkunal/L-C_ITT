@@ -1,0 +1,23 @@
+def getAdjacentCountries(countryCode):
+    if countryCode == 'IN':
+        return 'Pakistan, China, Nepal, Bhutan, Myanmar'
+    elif countryCode == 'US':
+        return 'Canada, Mexico'                                  
+    elif countryCode == 'CA':
+        return 'United States'                                    
+    elif countryCode == 'AU':
+        return 'New Zealand, Papua New Guinea'  
+    elif countryCode == 'NZ':
+        return 'Australia, Papua New Guinea'                 
+    elif countryCode == 'PK':
+        return 'India, Afghanistan, Iran'                     
+    else:
+        return None  
+
+countryCode = input("Enter a country codes(IN, US, CA, AU and PK): ") 
+adjacent = getAdjacentCountries(countryCode)
+
+if adjacent:
+    print(f"Adjacent countries: {adjacent}")
+else:
+    print("No adjacent countries found or invalid country code.")
