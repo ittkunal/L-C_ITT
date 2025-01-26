@@ -8,18 +8,18 @@ public class Customer
 
 public class CustomerSearch
 {
-    private readonly DatabaseContext db; 
+    private readonly DatabaseContext customerContext; 
 
     public CustomerSearch(DatabaseContext context)
     {
-        db = context;
+        customerContext = context;
     }
 
     // Search customer by Country
     public List<Customer> SearchByCountry(string country)
     {
         var query =
-            from customer in db.customers
+            from customer in customerContext.customers
             where customer.Country.Contains(country)
             orderby customer.CustomerID ascending
             select customer;
@@ -31,7 +31,7 @@ public class CustomerSearch
     public List<Customer> SearchByCompanyName(string company)
     {
         var query =
-            from customer in db.customers
+            from customer in customerContext.customers
             where customer.CompanyName.Contains(company)
             orderby customer.CustomerID ascending
             select customer;
@@ -43,7 +43,7 @@ public class CustomerSearch
     public List<Customer> SearchByContact(string contact)
     {
         var query =
-            from customer in db.customers
+            from customer in customerContext.customers
             where customer.ContactName.Contains(contact)
             orderby customer.CustomerID ascending
             select customer;
@@ -60,10 +60,14 @@ public class CustomerExporter
 
         foreach (var customerRecord in customerRecordList)
         {
-            csvbuilder.AppendFormat("{0},{1},{2},{3}", customerRecord.CustomerID, customerRecord.CompanyName, customerRecord.ContactName, customerRecord.Country);
-            csvbuilder.AppendLine();
+            csvBuilder.AppendLine(ConvertCustomerToCSV(customerRecord));
         }
 
+
         return csvbuilder.ToString();
+    }
+    private string ConvertCustomerToCSV(Customer customer)
+    {
+        return $"{customer.CustomerID},{customer.CompanyName},{customer.ContactName},{customer.Country}";
     }
 }

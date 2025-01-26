@@ -16,7 +16,7 @@ class BookDetails {
     }
 }
 
-class BookPages {
+class BookState {
     private $currentPage;
 
     public function turnPage() {

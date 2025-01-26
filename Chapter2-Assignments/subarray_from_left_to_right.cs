@@ -2,13 +2,21 @@ using System;
 
 class Program {
     static void Main(string[] args) {
-        var sizeAndQueryCount = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
-        var elements = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
-
+        var (elements, queryCount) = ReadInput();
         var cumulativeSum = new PrefixSumCalculator(elements);
         var queryEvaluator = new QueryEvaluator(cumulativeSum);
 
-        for (var queryCounter = 0; queryCounter < sizeAndQueryCount[1]; queryCounter++) {
+        ProcessQueries(queryEvaluator, queryCount);
+    }
+
+    private static (long[], int) ReadInput() {
+        var sizeAndQueryCount = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+        var elements = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
+        return (elements, sizeAndQueryCount[1]);
+    }
+
+    private static void ProcessQueries(QueryEvaluator queryEvaluator, int queryCount) {
+        for (var queryCounter = 0; queryCounter < queryCount; queryCounter++) {
             var queryLimits = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
             var result = queryEvaluator.CalculateQueryResult(queryLimits[0], queryLimits[1]);
             Console.WriteLine(result);

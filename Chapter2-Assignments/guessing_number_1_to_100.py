@@ -1,7 +1,7 @@
 import random
 
-def get_user_input(request):
-    return input(request)
+def get_user_input():
+    return input("Guess a number between 1 and 100: ")
 
 def is_valid_input_number(user_input):
     return user_input.isdigit() and 1 <= int(user_input) <= 100
@@ -30,7 +30,7 @@ def main():
     guessed_correct = False
 
     while not guessed_correct:
-        user_input = get_user_input("Guess a number between 1 and 100: ")
+        user_input = get_user_input()
 
         if not is_valid_input_number(user_input):
             display_invalid_input_message()
