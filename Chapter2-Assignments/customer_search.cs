@@ -54,13 +54,13 @@ public class CustomerSearch
 
 public class CustomerExporter
 {
-    public string ExportToCSV(List<Customer> data)
+    public string ExportToCSV(List<Customer> customerRecordList)
     {
         StringBuilder csvbuilder = new StringBuilder();
 
-        foreach (var item in data)
+        foreach (var customerRecord in customerRecordList)
         {
-            csvbuilder.AppendFormat("{0},{1},{2},{3}", item.CustomerID, item.CompanyName, item.ContactName, item.Country);
+            csvbuilder.AppendFormat("{0},{1},{2},{3}", customerRecord.CustomerID, customerRecord.CompanyName, customerRecord.ContactName, customerRecord.Country);
             csvbuilder.AppendLine();
         }
 

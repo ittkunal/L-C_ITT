@@ -34,7 +34,7 @@ class BookLocation {
     }
 }
 
-class BookPersistence {
+class BookStorage {
     private $bookDetails;
 
     public function __construct(BookDetails $bookDetails) {
